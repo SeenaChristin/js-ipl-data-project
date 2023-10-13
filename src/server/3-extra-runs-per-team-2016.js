@@ -1,33 +1,21 @@
-const fs = require("fs");
-
-function extraRuns2016(matchesData) {
-  let extraRuns = new Map();
+function extraRuns2016(matchesData, deliveriesData) {
+  let extraRuns = {};
   matchesData.map((match, index) => {
     if (match.season == 2016) {
-      if (extraRuns.has(match.winner)) {
-        extraRuns.set(
-          match.winner,
-          extraRuns.get(match.winner) + parseInt(match.win_by_runs)
-        );
-      } else if (match.winner) {
-        extraRuns.set(match.winner, parseInt(match.win_by_runs));
-      }
+      deliveriesData.map((delivery) => {
+        if (delivery.match_id == match.id) {
+          if (extraRuns[delivery.bowling_team] != undefined) {
+            extraRuns[delivery.bowling_team] =
+              parseInt(extraRuns[delivery.bowling_team]) +
+              parseInt(delivery.extra_runs);
+          } else {
+            extraRuns[delivery.bowling_team] = parseInt(delivery.extra_runs);
+          }
+        }
+      });
     }
   });
-
-  var obj = Object.fromEntries(extraRuns);
-  var jsonString = JSON.stringify(obj);
-  fs.writeFile(
-    "/Users/seenachristin/MountBlue/IPL Project/src/public/output/extrarunsPerTeam2016.json",
-    jsonString,
-    (err) => {
-      if (err) {
-        console.log("Error writing file", err);
-      } else {
-        console.log("Successfully wrote file");
-      }
-    }
-  );
+  return extraRuns;
 }
 
 module.exports = extraRuns2016;
