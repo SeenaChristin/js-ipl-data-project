@@ -132,3 +132,9 @@ dist
   src/.DS_Store
 
  ./src/data
+
+# EsLint
+.eslintrc.json
+
+# Prettier
+.prettierignore
