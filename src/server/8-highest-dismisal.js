@@ -4,7 +4,7 @@ function highestDismisal(delioveriesData) {
   delioveriesData.map((delivery) => {
     if (
       delivery.player_dismissed != undefined &&
-      delivery.player_dismissed != "" &&
+      delivery.player_dismissed != '' &&
       delivery.bowler != undefined
     ) {
       if (highestDismisalData[delivery.player_dismissed] != undefined) {
@@ -24,24 +24,37 @@ function highestDismisal(delioveriesData) {
   });
 
   let maxValue = 0;
-  let batsman = "";
-  let bowler = "";
+  let batsman = '';
+  let bowler = '';
   for (const batsmanName in highestDismisalData) {
     let obj = highestDismisalData[batsmanName];
     // console.log(obj);
     for (let key in obj) {
       if (maxValue < obj[key]) {
         maxValue = obj[key];
-        batsman = batsmanName;
-        bowler = key;
       }
     }
   }
-  result.batsmanName = batsman;
-  result.dismissedBy = bowler;
-  result.HighestNumber = maxValue;
+  let resultObj = {};
+  let index = 0;
+  for (const batsmanName in highestDismisalData) {
+    let obj = highestDismisalData[batsmanName];
+    // console.log(obj);
+    for (let key in obj) {
+      if (obj[key] == maxValue) {
+        batsman = batsmanName;
+        bowler = key;
+        result = {};
+        result.batsman = batsman;
+        result.dismissedBy = bowler;
+        result.HighestNumber = maxValue;
+        resultObj[index] = result;
+        index++;
+      }
+    }
+  }
 
-  return result;
+  return resultObj;
 }
 
 module.exports = highestDismisal;
