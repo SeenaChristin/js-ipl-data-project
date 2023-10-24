@@ -1,3 +1,4 @@
+/* global Highcharts */
 async function readJsonFile(fileName) {
   try {
     const response = await fetch(`./output/${fileName}`);
@@ -9,9 +10,9 @@ async function readJsonFile(fileName) {
 }
 
 function printChart1(data) {
-  const chart = Highcharts.chart('chart1', {
+  Highcharts.chart('chart1', {
     chart: {
-      type: 'column',
+      type: 'line',
     },
     title: {
       text: 'MatchesPerYear',
@@ -83,7 +84,7 @@ function printChart2(data) {
 }
 
 function printChart3(data) {
-  const chart = Highcharts.chart('chart3', {
+  Highcharts.chart('chart3', {
     chart: {
       type: 'column',
     },
@@ -106,9 +107,9 @@ function printChart3(data) {
 }
 
 function printChart4(data) {
-  const chart = Highcharts.chart('chart4', {
+  Highcharts.chart('chart4', {
     chart: {
-      type: 'column',
+      type: 'bar',
     },
     title: {
       text: 'Top ten Economic Players 2105',
@@ -134,7 +135,7 @@ function printChart4(data) {
 }
 
 function printChart5(data) {
-  const chart = Highcharts.chart('chart5', {
+  Highcharts.chart('chart5', {
     chart: {
       type: 'column',
     },
@@ -203,7 +204,7 @@ function printChart6(data) {
 function printChart7(data) {
   Highcharts.chart('chart7', {
     chart: {
-      type: 'column',
+      type: 'line',
       zoomType: 'xy',
     },
     title: {
