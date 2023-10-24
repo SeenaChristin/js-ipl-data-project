@@ -3,11 +3,11 @@ function topTenEcoBowlers(matchesData, deliveriesData) {
   let ecorateObj = {};
   let ecorateArr = [];
   matchesData.map((match) => {
-    if (match.season == "2015") {
+    if (match.season == '2015') {
       deliveriesData.map((delivery) => {
         if (delivery.bowler != undefined && delivery.match_id == match.id) {
           if (bowlerData[delivery.bowler] != undefined) {
-            if (delivery.wide_runs == "0" && delivery.noball_runs == "0") {
+            if (delivery.wide_runs == '0' && delivery.bye_runs == '0') {
               bowlerData[delivery.bowler].balls =
                 bowlerData[delivery.bowler].balls + 1;
             }
@@ -27,16 +27,14 @@ function topTenEcoBowlers(matchesData, deliveriesData) {
 
   for (const bowler in bowlerData) {
     const obj = bowlerData[bowler];
-    for (const balls in obj) {
-      let ecorate = (obj.totalRuns / obj.balls) * 6;
-      if (!isNaN(ecorate)) {
-        ecorateObj[bowler] = ecorate;
-      }
+    let ecorate = (obj.totalRuns / obj.balls) * 6;
+    if (!isNaN(ecorate)) {
+      ecorateObj[bowler] = ecorate;
     }
   }
   ecorateArr = Object.entries(ecorateObj);
   ecorateArr.sort((a, b) => (a[1] > b[1] ? 1 : -1));
-  if (ecorateArr.length > 10) ecorateArr.length = 10;
+  ecorateArr = ecorateArr.slice(0, 10);
   return Object.fromEntries(ecorateArr);
 }
 

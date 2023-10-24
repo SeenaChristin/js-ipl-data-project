@@ -1,7 +1,7 @@
 const highestDismisal = require('../server/8-highest-dismisal');
 
-test('Calculates matches per year correctly', () => {
-  const input = [
+test('Calculates Highest Dissmisal correctly', () => {
+  const matches = [
     { player_dismissed: 'MS Dhoni', bowler: 'TS Mills' },
     { player_dismissed: 'V Kholi', bowler: 'A Choudhary' },
     { player_dismissed: 'DA Warner', bowler: 'S Aravind' },
@@ -29,7 +29,7 @@ test('Calculates matches per year correctly', () => {
     1: { batsman: 'V Kholi', dismissedBy: 'A Choudhary', HighestNumber: 5 },
   };
 
-  const result = highestDismisal(input);
+  const result = highestDismisal(matches);
 
   expect(result).toEqual(expectedOutput);
 });

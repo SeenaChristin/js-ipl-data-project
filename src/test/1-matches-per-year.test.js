@@ -1,23 +1,23 @@
-const matchesPerYear = require("../server/1-matches-per-year");
+const matchesPerYear = require('../server/1-matches-per-year');
 
-test("Calculates matches per year correctly", () => {
-  const input = [
-    { season: "2008" },
-    { season: "2008" },
-    { season: "2009" },
-    { season: "2010" },
-    { season: "2011" },
-    { season: "2011" },
-    { season: "2012" },
-    { season: "2013" },
-    { season: "2013" },
-    { season: "2014" },
-    { season: "2015" },
-    { season: "2016" },
-    { season: "2016" },
-    { season: "2017" },
-    { season: "2017" },
-    { season: "2017" },
+test('Calculates matches per year correctly', () => {
+  const matches = [
+    { season: '2008' },
+    { season: '2008' },
+    { season: '2009' },
+    { season: '2010' },
+    { season: '2011' },
+    { season: '2011' },
+    { season: '2012' },
+    { season: '2013' },
+    { season: '2013' },
+    { season: '2014' },
+    { season: '2015' },
+    { season: '2016' },
+    { season: '2016' },
+    { season: '2017' },
+    { season: '2017' },
+    { season: '2017' },
   ];
 
   const expectedOutput = {
@@ -33,7 +33,7 @@ test("Calculates matches per year correctly", () => {
     2017: 3,
   };
 
-  const result = matchesPerYear(input);
+  const result = matchesPerYear(matches);
 
   expect(result).toEqual(expectedOutput);
 });

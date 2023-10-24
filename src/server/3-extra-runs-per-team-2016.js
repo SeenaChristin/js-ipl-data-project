@@ -1,6 +1,6 @@
 function extraRuns2016(matchesData, deliveriesData) {
   let extraRuns = {};
-  matchesData.map((match, index) => {
+  matchesData.map((match) => {
     if (match.season == 2016) {
       deliveriesData.map((delivery) => {
         if (delivery.match_id == match.id) {

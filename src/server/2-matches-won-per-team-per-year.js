@@ -1,6 +1,6 @@
 function matchesWonPerTeam(matchesData) {
   let matchesWonObj = {};
-  matchesData.map((match, index) => {
+  matchesData.map((match) => {
     if (matchesWonObj[match.season] === undefined) {
       matchesWonObj[match.season] = {};
     }

@@ -129,10 +129,14 @@ dist
 .yarn/install-state.gz
 .pnp.*
 
-  src/.DS_Store
+.DS_Store
 
  ./src/data
 
  .prettierignore
 
  .eslintrc
+
+ .eslintrc.json
+
+.husky

@@ -1,23 +1,23 @@
-const matchesWonPerTeam = require("../server/2-matches-won-per-team-per-year");
+const matchesWonPerTeam = require('../server/2-matches-won-per-team-per-year');
 
-test("Calculates matches per year correctly", () => {
-  const input = [
-    { winner: "Pune", season: "2009" },
-    { winner: "Mumbai", season: "2008" },
-    { winner: "Gujarat", season: "2007" },
-    { winner: "Gujarat", season: "2009" },
-    { winner: "RCB", season: "2008" },
-    { winner: "Punjab", season: "2007" },
-    { winner: "Pune", season: "2009" },
-    { winner: "RCB", season: "2008" },
-    { winner: "RCB", season: "2007" },
-    { winner: "Mumbai", season: "2009" },
-    { winner: "Pune", season: "2008" },
-    { winner: "Gujarat", season: "2007" },
-    { winner: "Mumbai", season: "2009" },
-    { winner: "RCB", season: "2008" },
-    { winner: "Punjab", season: "2007" },
-    { winner: "Mumbai", season: "2009" },
+test('Calculates matches won per team per year correctly', () => {
+  const matches = [
+    { winner: 'Pune', season: '2009' },
+    { winner: 'Mumbai', season: '2008' },
+    { winner: 'Gujarat', season: '2007' },
+    { winner: 'Gujarat', season: '2009' },
+    { winner: 'RCB', season: '2008' },
+    { winner: 'Punjab', season: '2007' },
+    { winner: 'Pune', season: '2009' },
+    { winner: 'RCB', season: '2008' },
+    { winner: 'RCB', season: '2007' },
+    { winner: 'Mumbai', season: '2009' },
+    { winner: 'Pune', season: '2008' },
+    { winner: 'Gujarat', season: '2007' },
+    { winner: 'Mumbai', season: '2009' },
+    { winner: 'RCB', season: '2008' },
+    { winner: 'Punjab', season: '2007' },
+    { winner: 'Mumbai', season: '2009' },
   ];
 
   const expectedOutput = {
@@ -26,7 +26,7 @@ test("Calculates matches per year correctly", () => {
     2009: { Pune: 2, Gujarat: 1, Mumbai: 3 },
   };
 
-  const result = matchesWonPerTeam(input);
+  const result = matchesWonPerTeam(matches);
 
   expect(result).toEqual(expectedOutput);
 });
