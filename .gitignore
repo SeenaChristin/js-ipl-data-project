@@ -132,3 +132,7 @@ dist
   src/.DS_Store
 
  ./src/data
+
+ .prettierignore
+
+ .eslintrc
