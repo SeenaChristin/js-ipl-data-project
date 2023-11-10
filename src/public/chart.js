@@ -1,3 +1,4 @@
+/* eslint-disable no-prototype-builtins */
 /* global Highcharts */
 async function readJsonFile(fileName) {
   try {
@@ -12,7 +13,7 @@ async function readJsonFile(fileName) {
 function printChart1(data) {
   Highcharts.chart('chart1', {
     chart: {
-      type: 'line',
+      type: 'column',
     },
     title: {
       text: 'MatchesPerYear',
@@ -39,25 +40,33 @@ function printChart1(data) {
 
 function printChart2(data) {
   let result = [];
-  for (const year in data) {
-    for (const team in data[year]) {
-      let gotMatch = false;
-      result.map((record) => {
-        if (record.name == team) {
-          record.data.push(data[year][team]);
-          gotMatch = true;
-        }
-      });
-      if (!gotMatch) {
-        let series = { name: '', data: [] };
-        if (team != '' && team != undefined) {
-          series.name = team;
-          series.data.push(data[year][team]);
-          result.push(series);
-        }
+  let names = {};
+  let arr = Object.entries(data);
+  arr.map((record) => {
+    let arrofNames = Object.keys(record[1]);
+    arrofNames.map((name) => {
+      if (name != '' && name != undefined) {
+        names[name] = [];
       }
-    }
+    });
+  });
+  for (let key in names) {
+    arr.map((record) => {
+      if (record[1].hasOwnProperty(key)) {
+        names[key].push(record[1][key]);
+      } else {
+        names[key].push(0);
+      }
+    });
   }
+  for (let key in names) {
+    let series = {};
+    series.name = key;
+    series.data = names[key];
+    result.push(series);
+  }
+
+  // console.log(names);
   Highcharts.chart('chart2', {
     chart: {
       type: 'column',
@@ -175,7 +184,6 @@ function printChart6(data) {
     }
     index++;
   }
-  console.log(result);
   Highcharts.chart('chart6', {
     chart: {
       type: 'column',
@@ -208,7 +216,7 @@ function printChart7(data) {
       zoomType: 'xy',
     },
     title: {
-      text: 'Strike Rate Each Season',
+      text: 'Strike Rate Each Season of MS Dhoni',
     },
     xAxis: {
       title: {
